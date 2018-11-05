@@ -20,6 +20,7 @@ xst
 *.ngc
 *.ngr
 *.ngm
+*.ngd
 *.pad
 *.par
 *.pcf
