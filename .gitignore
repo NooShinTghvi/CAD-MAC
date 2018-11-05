@@ -2,7 +2,7 @@ work
 MAC.mpf
 *.mti
 *.mpt
-TB.vhd
+TestBench.vhd
 main.vhd
 
 _ngo
@@ -12,6 +12,7 @@ iseconfig
 templates
 xlnx_auto_0_xdb
 xst
+isim
 .lso
 *.lso
 *.bld
@@ -43,3 +44,9 @@ xst
 *.html
 *.gise
 *.xise
+*.exe
+*.wdb
+*.log
+*.xmsgs
+*.cmd
+*.ini
