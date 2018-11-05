@@ -1,1 +1,0 @@
--intstyle "ise" -incremental -o "D:/UnI/Fall 97/Computer Aided Design/CA/Quiz 1/MAC/TB_isim_beh.exe" -prj "D:/UnI/Fall 97/Computer Aided Design/CA/Quiz 1/MAC/TB_beh.prj" "work.TB" 
