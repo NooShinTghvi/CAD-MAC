@@ -19,6 +19,7 @@
 ----------------------------------------------------------------------------------
 library IEEE;
 use IEEE.STD_LOGIC_1164.ALL;
+use IEEE.STD_LOGIC_UNSIGNED.ALL;
 
 -- Uncomment the following library declaration if using
 -- arithmetic functions with Signed or Unsigned values
@@ -59,11 +60,16 @@ component reg is
            regOut : out  STD_LOGIC_VECTOR (15 downto 0));
 end component;
 --for a3:_reg use entity work.reg(Behavioral);
-signal multOutWire , adderOutWire , regOutWire : STD_LOGIC_VECTOR (15 downto 0));
+signal multOutWire : STD_LOGIC_VECTOR (15 downto 0));
+signal adderOutWire : STD_LOGIC_VECTOR (15 downto 0));
+signal regOutWire : STD_LOGIC_VECTOR (15 downto 0));
 begin
-	m : multiplier port map(multInA => A , multInB => B , multOut => multOutWire);
-	a : adder port map(adderInA => multOutWire , adderInB => regOutWire , adderOut => adderOutWire);
-	r : reg port map(clk => clk , rst => rst , regIn => adderOutWire , regOut => regOutWire);
+	m : multiplier port map( A , B , multOutWire);
+	-- multInA <= A , multInB <= B , multOut => multOutWire
+	a : adder port map(multOutWire , regOutWire , adderOutWire);
+	--adderInA <= multOutWire , adderInB <= regOutWire , adderOut => adderOutWire
+	r : reg port map(clk , rst , adderOutWire , regOutWire);
+	--clk <= clk , rst <= rst , regIn <= adderOutWire , regOut => regOutWire
 	
 	output <= regOutWire;
 end Behavioral;
