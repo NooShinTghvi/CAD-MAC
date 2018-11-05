@@ -12,7 +12,8 @@ iseconfig
 templates
 xlnx_auto_0_xdb
 xst
-*.Iso
+.lso
+*.lso
 *.bld
 *.cmd_log
 *.ncd
