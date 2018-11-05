@@ -38,8 +38,6 @@ end adder;
 
 architecture Behavioral of adder is
 begin
-	
 	adderOut <= adderInA + adderInB;
-
 end Behavioral;
 

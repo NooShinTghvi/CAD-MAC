@@ -20,6 +20,7 @@
 library IEEE;
 use IEEE.STD_LOGIC_1164.ALL;
 use IEEE.STD_LOGIC_UNSIGNED.ALL;
+use ieee.numeric_std.all;
 
 -- Uncomment the following library declaration if using
 -- arithmetic functions with Signed or Unsigned values
@@ -44,14 +45,14 @@ component multiplier is
            multInB : in  STD_LOGIC_VECTOR (15 downto 0);
            multOut : out  STD_LOGIC_VECTOR (15 downto 0));
 end component;
---for mult : multiplier use entity work.multiplier(Behavioral);
+for  m : multiplier use entity work.multiplier(Behavioral);
 
 component adder is
     Port ( adderInA : in  STD_LOGIC_VECTOR (15 downto 0);
            adderInB : in  STD_LOGIC_VECTOR (15 downto 0);
            adderOut : out  STD_LOGIC_VECTOR (15 downto 0));
 end component;
---for a2:_adder use entity work.adder(Behavioral);
+for ar : adder use entity work.adder(Behavioral);
 
 component reg is
     Port ( clk : in  STD_LOGIC;
@@ -59,17 +60,18 @@ component reg is
 			  regIn : in  STD_LOGIC_VECTOR (15 downto 0);
            regOut : out  STD_LOGIC_VECTOR (15 downto 0));
 end component;
---for a3:_reg use entity work.reg(Behavioral);
-signal multOutWire : STD_LOGIC_VECTOR (15 downto 0));
-signal adderOutWire : STD_LOGIC_VECTOR (15 downto 0));
-signal regOutWire : STD_LOGIC_VECTOR (15 downto 0));
+for r : reg use entity work.reg(Behavioral);
+
+signal multOutWire : STD_LOGIC_VECTOR (15 downto 0) := (others => '0');
+signal adderOutWire : STD_LOGIC_VECTOR (15 downto 0) := (others => '0');
+signal regOutWire : STD_LOGIC_VECTOR (15 downto 0) := (others => '0');
 begin
 	m : multiplier port map( A , B , multOutWire);
 	-- multInA <= A , multInB <= B , multOut => multOutWire
-	a : adder port map(multOutWire , regOutWire , adderOutWire);
+	ar : adder port map(multOutWire , regOutWire , adderOutWire);
 	--adderInA <= multOutWire , adderInB <= regOutWire , adderOut => adderOutWire
 	r : reg port map(clk , rst , adderOutWire , regOutWire);
 	--clk <= clk , rst <= rst , regIn <= adderOutWire , regOut => regOutWire
-	
+
 	output <= regOutWire;
 end Behavioral;

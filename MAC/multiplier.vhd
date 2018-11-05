@@ -38,9 +38,9 @@ entity multiplier is
 end multiplier;
 
 architecture Behavioral of multiplier is
+signal tmp : STD_LOGIC_VECTOR (31 downto 0) := (others => '0');
 begin
-
-	multOut <= std_logic_vector(unsigned(multInA) * unsigned(multInB));
-
+	tmp <= multInA * multInB;
+	multOut <= tmp(multOut'range);
 end Behavioral;
 

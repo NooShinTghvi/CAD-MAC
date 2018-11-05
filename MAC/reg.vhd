@@ -37,11 +37,13 @@ entity reg is
 end reg;
 
 architecture Behavioral of reg is
-signal tmp : STD_LOGIC_VECTOR (15 downto 0);
 begin
-
-	tmp <= regIn when( clk = '1' and not clk'stable) else tmp;
-	regOut <= regIn ;
-
+	process(clk, rst) begin
+      if rst = '1' then 
+         regOut <= x"0000";
+      elsif clk = '1' and clk'event  then
+         regOut <= regIn;
+      end if;
+   end process;
 end Behavioral;
 
